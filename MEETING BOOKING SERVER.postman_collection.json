@@ -1,0 +1,374 @@
+{
+	"info": {
+		"_postman_id": "a8dc8be1-7969-45ee-a74e-e8afdd07a904",
+		"name": "MEETING BOOKING SERVER",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "27930403"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"test@gmail.com\",\r\n  \"password\": \"noyon\",\r\n  \"phone\": 1234567890,\r\n  \"address\": \"123 Main St\",\r\n  \"role\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/auth/signup"
+					},
+					"response": []
+				},
+				{
+					"name": "Find All User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"john.doe@example.com\",\r\n  \"password\": \"securepassword123\",\r\n  \"phone\": 1234567890,\r\n  \"address\": \"123 Main St\",\r\n  \"role\": \"user\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/auth/users"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"john.doe@example.com\",\r\n  \"password\": \"securepassword123\",\r\n  \"phone\": 1234567890,\r\n  \"address\": \"123 Main St\",\r\n  \"role\": \"user\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/auth/666f394021f5222c7447d193"
+					},
+					"response": []
+				},
+				{
+					"name": "Find Single User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"john.doe@example.com\",\r\n  \"password\": \"securepassword123\",\r\n  \"phone\": 1234567890,\r\n  \"address\": \"123 Main St\",\r\n  \"role\": \"user\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/auth/666f394021f5222c7447d193"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"noyon@gmail.com\",\r\n    \"password\": \"noyon\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test@gmail.com\",\r\n    \"password\": \"noyon\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/auth/login"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rooms",
+			"item": [
+				{
+					"name": "Create Room",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5veW9uQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxODg2MTY1MSwiZXhwIjoxNzE4OTQ4MDUxfQ.IjKy21ytZ0eeN0NqnhgOQ8uhClIVZVjnpl7jLnVXylk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Chill And Adda Room\",\r\n  \"roomNo\": 202,\r\n  \"floorNo\": 2,\r\n  \"capacity\": 20,\r\n  \"pricePerSlot\": 100,\r\n  \"amenities\": [\"Projector\", \"Whiteboard\", \"WiFi\"]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/rooms"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Rooms",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5veW9uQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxODc4NjE4NywiZXhwIjoxNzE4ODcyNTg3fQ.TiRARHzj2AXVq3yVrb1HiI32VYDb0ABqfGDMACoPdSk",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:5000/api/rooms"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Rooms",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/api/rooms/66727e03015d052f55fdd821"
+					},
+					"response": []
+				},
+				{
+					"name": "Room Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:5000/api/rooms/66727e03015d052f55fdd821"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Room",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"amenities\": [\"ami jani\"],\r\n      \"pricePerSlot\": 300\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/rooms/66727e23015d052f55fdd823"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Slot",
+			"item": [
+				{
+					"name": "Create Slot",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5veW9uQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxODgyMjk2OSwiZXhwIjoxNzE4OTA5MzY5fQ.sqo8QzhLEPC2SxtP82feJT_ccJGKPYoyuM6y45eCJ50",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"room\": \"6673bf7c6d21de5564ef5dc0\",\r\n    \"date\": \"2024-06-20\",\r\n    \"startTime\": \"12:00\",\r\n    \"endTime\": \"14:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/slots"
+					},
+					"response": []
+				},
+				{
+					"name": "Gel All Slot",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/slots/availability?roomId=6673bf7c6d21de5564ef5dc0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"slots",
+								"availability"
+							],
+							"query": [
+								{
+									"key": "roomId",
+									"value": "6673bf7c6d21de5564ef5dc0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Booking",
+			"item": [
+				{
+					"name": "Create Booking",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRyaXN0eUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTcxODg2NDc0NiwiZXhwIjoxNzE4OTUxMTQ2fQ._d66rBRBUhHjjXZ8Qo8GjC8PW65wQs8QpOo-up_UsJE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"2024-06-20\",\r\n     \"slots\": [\"6673c775ff695a7446d012fe\", \"6673c775ff695a7446d012fd\"],\r\n     \"room\": \"6673bf7c6d21de5564ef5dc0\",\r\n     \"user\": \"667327fd15f9224070a15e75\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/bookings"
+					},
+					"response": []
+				},
+				{
+					"name": "get all bookings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5veW9uQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxODg2MTY1MSwiZXhwIjoxNzE4OTQ4MDUxfQ.IjKy21ytZ0eeN0NqnhgOQ8uhClIVZVjnpl7jLnVXylk",
+								"type": "text"
+							}
+						],
+						"url": "{{base_url}}/bookings"
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Bookings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjczMjdmZDE1ZjkyMjQwNzBhMTVlNzUiLCJlbWFpbCI6ImRyaXN0eUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTcxODk0Mzg0MywiZXhwIjoxNzE5MDMwMjQzfQ.tlF7MY3jW10IoIgjUcabOo9q2TS2sALKX2nnbBE8cc8",
+								"type": "text"
+							}
+						],
+						"url": "{{base_url}}/my-bookings"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Booking",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjcyOTg1ZmZmYjZiNTk5YzY3Mjk1N2IiLCJlbWFpbCI6Im5veW9uQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxODk0NDgxOSwiZXhwIjoxNzE5MDMxMjE5fQ.m-vvypnK0VMMkrJeWxb28Uj6NkU27_8UX67W_ve4M0E",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"isConfirmed\": \"confirmed\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/bookings/6673e656c4e93f86f0374e69"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Booking",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjcyOTg1ZmZmYjZiNTk5YzY3Mjk1N2IiLCJlbWFpbCI6Im5veW9uQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxODk0NDgxOSwiZXhwIjoxNzE5MDMxMjE5fQ.m-vvypnK0VMMkrJeWxb28Uj6NkU27_8UX67W_ve4M0E",
+								"type": "text"
+							}
+						],
+						"url": "{{base_url}}/bookings/6673e656c4e93f86f0374e69"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Testing Route",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5000"
+			},
+			"response": []
+		}
+	]
+}
