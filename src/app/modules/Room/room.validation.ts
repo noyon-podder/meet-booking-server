@@ -3,6 +3,9 @@ import { z } from 'zod'
 const createRoomValidationSchema = z.object({
   body: z.object({
     name: z.string().min(1, 'Name is required'),
+    country: z.string().min(1, 'County is required'),
+    division: z.string().min(1, 'Division is required'),
+    details: z.string().min(1, 'Details is required'),
     roomNo: z
       .number()
       .int('Room number must be an integer')
@@ -21,6 +24,9 @@ const createRoomValidationSchema = z.object({
 const updateRoomValidationSchema = z.object({
   body: z.object({
     name: z.string().min(1, 'Name is required').optional(),
+    county: z.string().min(1, 'County is required').optional(),
+    division: z.string().min(1, 'Division is required').optional(),
+    details: z.string().min(1, 'Details is required').optional(),
     roomNo: z
       .number()
       .int('Room number must be an integer')

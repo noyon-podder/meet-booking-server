@@ -6,6 +6,18 @@ const roomSchema = new Schema<TRoom>({
     type: String,
     required: true,
   },
+  country: {
+    type: String,
+    required: true,
+  },
+  division: {
+    type: String,
+    required: true,
+  },
+  details: {
+    type: String,
+    required: true,
+  },
   roomNo: {
     type: Number,
     required: true,

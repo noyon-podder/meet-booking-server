@@ -14,6 +14,7 @@ const createSlot = catchAsync(async (req: Request, res: Response) => {
   })
 })
 
+// get all Available slots
 const getAllAvailableSlots = catchAsync(async (req: Request, res: Response) => {
   const result = await SlotServices.getAllAvailableSlotsFromDB(req.query)
 
@@ -21,6 +22,18 @@ const getAllAvailableSlots = catchAsync(async (req: Request, res: Response) => {
     statusCode: 200,
     success: true,
     message: 'Available Slots Retrieve Successfully',
+    data: result,
+  })
+})
+
+// get all slots
+const getAllSlots = catchAsync(async (req: Request, res: Response) => {
+  const result = await SlotServices.getAllSlotsFromDB()
+
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'All Slots Retrieve Successfully',
     data: result,
   })
 })
@@ -38,8 +51,25 @@ const slotDelete = catchAsync(async (req: Request, res: Response) => {
   })
 })
 
+// SLOT UPDATE
+const slotUpdate = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params
+  const slotUpdateData = req.body
+
+  const result = await SlotServices.slotUpdateFromDB(id, slotUpdateData)
+
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Slot time Update Successfully ',
+    data: result,
+  })
+})
+
 export const SlotControllers = {
   createSlot,
   getAllAvailableSlots,
   slotDelete,
+  slotUpdate,
+  getAllSlots,
 }

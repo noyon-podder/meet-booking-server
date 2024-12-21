@@ -16,6 +16,7 @@ app.use('/api', MainRouter)
 // check routing
 app.get('/', (req: Request, res: Response) => {
   res.json({
+    success: true,
     message: 'Hello Developer!!',
   })
 })

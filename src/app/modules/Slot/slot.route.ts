@@ -16,6 +16,10 @@ router.post(
 
 router.get('/availability', SlotControllers.getAllAvailableSlots)
 
+router.get('/', auth(USER_ROLE.admin), SlotControllers.getAllSlots)
+
 router.delete('/:id', auth(USER_ROLE.admin), SlotControllers.slotDelete)
+
+router.put('/:id', auth(USER_ROLE.admin), SlotControllers.slotUpdate)
 
 export const SlotRoutes = router

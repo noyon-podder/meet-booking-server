@@ -52,6 +52,7 @@ const createSlotIntoDB = async (payload: TSlot) => {
   return result
 }
 
+// get all available slots
 const getAllAvailableSlotsFromDB = async (query: Record<string, unknown>) => {
   const { date, roomId } = query
 
@@ -65,12 +66,24 @@ const getAllAvailableSlotsFromDB = async (query: Record<string, unknown>) => {
     findQuery = { ...findQuery, room: roomId as Types.ObjectId }
   }
 
-  const result = await Slot.find(findQuery).populate('room').exec()
+  const result = await Slot.find(findQuery)
+    .populate('room')
+    .sort({ createdAt: -1 })
+    .exec()
 
   return result
 }
 
-// room delete from db
+// get all slots to see only admin
+const getAllSlotsFromDB = async () => {
+  const result = await Slot.find()
+    .populate('room')
+    .sort({ createdAt: -1 })
+    .exec()
+  return result
+}
+
+// slot delete from db
 const slotDeleteFromDB = async (id: string) => {
   const result = await Slot.findOneAndUpdate(
     { _id: id },
@@ -84,8 +97,51 @@ const slotDeleteFromDB = async (id: string) => {
   return result
 }
 
+// slot update from db
+const slotUpdateFromDB = async (id: string, payload: Partial<TSlot>) => {
+  const { room, startTime, date, endTime } = payload
+
+  if (startTime! >= endTime!) {
+    throw new Error('Start time must be earlier than end time.')
+  }
+  // 1. Find conflicting slots in the same room and date
+  const conflictingSlot = await Slot.findOne({
+    room: room,
+    date: date,
+    _id: { $ne: id },
+    $or: [
+      {
+        startTime: { $lt: endTime },
+        endTime: { $gt: startTime },
+      },
+    ],
+    isDeleted: false,
+  })
+
+  // 2. If a conflicting slot exists, return error
+  if (conflictingSlot) {
+    throw new AppError(403, 'Start time must be earlier than end time.')
+  }
+
+  // 3. If no conflict, update the slot
+  const updatedSlot = await Slot.findByIdAndUpdate(
+    id,
+    {
+      room,
+      date,
+      startTime,
+      endTime,
+    },
+    { new: true }, // Return the updated document
+  )
+
+  return updatedSlot
+}
+
 export const SlotServices = {
   createSlotIntoDB,
   getAllAvailableSlotsFromDB,
   slotDeleteFromDB,
+  slotUpdateFromDB,
+  getAllSlotsFromDB,
 }
