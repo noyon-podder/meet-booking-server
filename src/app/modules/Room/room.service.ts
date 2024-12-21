@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import AppError from '../../errors/AppError'
 import { TRoom } from './room.interface'
 import { Room } from './room.model'
@@ -10,18 +11,37 @@ const createRoomIntoDB = async (payload: TRoom) => {
 
 // get all rooms
 const getAllRoomsFromDB = async (query: Record<string, unknown>) => {
-  const { searchTerm, capacity, minPrice, maxPrice, sort } = query
+  const {
+    searchTerm,
+
+    capacity,
+    minPrice,
+    maxPrice,
+    sort,
+    division,
+    country,
+  } = query
 
   const filter: any = {}
 
   // search product into name and brand
   if (searchTerm) {
     filter.name = { $regex: searchTerm, $options: 'i' }
+    filter.details = { $regex: searchTerm, $options: 'i' }
   }
 
   // Filter by capacity
   if (capacity) {
-    filter.capacity = { $gte: Number(capacity) } // Greater than or equal to capacity
+    filter.capacity = { $gte: Number(capacity) }
+  }
+
+  // FILTER BY DIVISION OR COUNTRY
+  if (division) {
+    filter.division = division
+  }
+
+  if (country) {
+    filter.country = country
   }
 
   // Filter by price range
