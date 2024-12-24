@@ -4,6 +4,7 @@ import { AuthRoutes } from '../modules/Auth/auth.route'
 import { RoomRoutes } from '../modules/Room/room.route'
 import { SlotRoutes } from '../modules/Slot/slot.route'
 import { BookingRoutes } from '../modules/Booking/booking.route'
+import { FavoriteRoutes } from '../modules/Favorite/favorite.route'
 
 const MainRouter = express.Router()
 
@@ -12,6 +13,8 @@ const moduleRoutes = [
   { path: '/user', routes: UserRoutes },
   { path: '/rooms', routes: RoomRoutes },
   { path: '/slots', routes: SlotRoutes },
+  { path: '/favorite', routes: FavoriteRoutes },
+
   { path: '/', routes: BookingRoutes },
 ]
 

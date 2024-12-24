@@ -1,3 +1,4 @@
+import { Types } from 'mongoose'
 import { USER_ROLE } from './user.constant'
 
 export type TUser = {
@@ -8,6 +9,7 @@ export type TUser = {
   address: string
   role: 'user' | 'admin'
   isDeleted: boolean
+  favorites: [Types.ObjectId]
 }
 
 export type TUserRole = keyof typeof USER_ROLE

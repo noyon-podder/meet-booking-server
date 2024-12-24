@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose'
+import { model, Schema, Types } from 'mongoose'
 import { TUser } from './user.interface'
 import bcrypt from 'bcrypt'
 import config from '../../config'
@@ -35,6 +35,10 @@ const userSchema = new Schema<TUser>(
     isDeleted: {
       type: Boolean,
       default: false,
+    },
+    favorites: {
+      type: [Types.ObjectId],
+      ref: 'Room',
     },
   },
   {
